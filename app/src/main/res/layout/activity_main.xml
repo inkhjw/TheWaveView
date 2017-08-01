@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.inkhjw.thewaveview.waveview.MultiWaveView xmlns:inkhjw="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/wave_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="100dp"
+        android:background="#FAFAFA"
+        inkhjw:anim_color="#F6A2A4"
+        inkhjw:anim_speed="0.02"
+        inkhjw:anim_totalHeight="30"
+        inkhjw:waveHeight="10"
+        inkhjw:waveWidth="270" />
+
+</FrameLayout>
