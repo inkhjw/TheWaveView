@@ -17,7 +17,7 @@ import com.inkhjw.thewaveview.waveview.drawable.WaveAnimationDrawable;
 
 /**
  * @author hjw
- *         单个波浪的效果
+ * 单个波浪的效果
  */
 
 public class WaveView extends View {
@@ -35,12 +35,6 @@ public class WaveView extends View {
 
     public WaveView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init(context, attrs);
-    }
-
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public WaveView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
         init(context, attrs);
     }
 
@@ -65,31 +59,9 @@ public class WaveView extends View {
         int defaultWidth = getSuggestedMinimumWidth() + getPaddingLeft() + getPaddingRight();
         int defaultHeight = getSuggestedMinimumHeight() + getPaddingTop() + getPaddingBottom();
 
-        int width = resolveSizeAndState(defaultWidth, widthMeasureSpec, 0);
-        int height = resolveSizeAndState(defaultHeight, heightMeasureSpec, 0);
+        int width = resolveSize(defaultWidth, widthMeasureSpec);
+        int height = resolveSize(defaultHeight, heightMeasureSpec);
         setMeasuredDimension(width, height);
-    }
-
-    public static int resolveSizeAndState(int size, int measureSpec, int childMeasuredState) {
-        final int specMode = MeasureSpec.getMode(measureSpec);
-        final int specSize = MeasureSpec.getSize(measureSpec);
-        final int result;
-        switch (specMode) {
-            case MeasureSpec.AT_MOST:
-                if (specSize < size) {
-                    result = specSize | MEASURED_STATE_TOO_SMALL;
-                } else {
-                    result = size;
-                }
-                break;
-            case MeasureSpec.EXACTLY:
-                result = specSize;
-                break;
-            case MeasureSpec.UNSPECIFIED:
-            default:
-                result = size;
-        }
-        return result | (childMeasuredState & MEASURED_STATE_MASK);
     }
 
     @Override

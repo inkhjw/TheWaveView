@@ -18,8 +18,8 @@ import java.util.ArrayList;
 
 /**
  * @author hjw
- *         多个波浪的效果
- *         是否需要延时执行，可在开启动画的时候判断是否延时(在重叠的情况下不延时执行，无法直观的显示效果)
+ * 多个波浪的效果
+ * 是否需要延时执行，可在开启动画的时候判断是否延时(在重叠的情况下不延时执行，无法直观的显示效果)
  */
 
 public class MultiWaveView extends View {
@@ -37,12 +37,6 @@ public class MultiWaveView extends View {
 
     public MultiWaveView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init(context, attrs);
-    }
-
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public MultiWaveView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
         init(context, attrs);
     }
 
@@ -86,31 +80,9 @@ public class MultiWaveView extends View {
         int defaultWidth = getSuggestedMinimumWidth() + getPaddingLeft() + getPaddingRight();
         int defaultHeight = getSuggestedMinimumHeight() + getPaddingTop() + getPaddingBottom();
 
-        int width = resolveSizeAndState(defaultWidth, widthMeasureSpec, 0);
-        int height = resolveSizeAndState(defaultHeight, heightMeasureSpec, 0);
+        int width = resolveSize(defaultWidth, widthMeasureSpec);
+        int height = resolveSize(defaultHeight, heightMeasureSpec);
         setMeasuredDimension(width, height);
-    }
-
-    public static int resolveSizeAndState(int size, int measureSpec, int childMeasuredState) {
-        final int specMode = MeasureSpec.getMode(measureSpec);
-        final int specSize = MeasureSpec.getSize(measureSpec);
-        final int result;
-        switch (specMode) {
-            case MeasureSpec.AT_MOST:
-                if (specSize < size) {
-                    result = specSize | MEASURED_STATE_TOO_SMALL;
-                } else {
-                    result = size;
-                }
-                break;
-            case MeasureSpec.EXACTLY:
-                result = specSize;
-                break;
-            case MeasureSpec.UNSPECIFIED:
-            default:
-                result = size;
-        }
-        return result | (childMeasuredState & MEASURED_STATE_MASK);
     }
 
     @Override
